@@ -1,0 +1,72 @@
+<main>
+   <div class="container">
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+         <div class="container-fluid" >
+            <div class="row justify-content-center">
+               <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                  <div class="d-flex justify-content-center py-4"> <a routerLink="/"
+                        class="logo d-flex align-items-center w-auto"> <img src="assets/img/image002.gif" alt=""> <span
+                         class="d-none d-lg-block">Bienvenue chère employé dans notre plateforme</span> </a></div>
+                     <div class="card mb-3">
+                     <div class="card-body">
+                     <form class="row g-3">
+  <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="signup()">
+  <div class="col-12">
+    <label for="inputEmail4" class="form-label">Nom</label>
+    <input type="text" class="form-control" id="inputEmail4" placeholder="Nom" formControlName="nom" class="text-dark"
+    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['nom'].errors }" />
+  <div *ngIf="isFormSubmitted && signupControls['nom'].errors" class="invalid-feedback">
+    <div *ngIf="signupControls['nom'].errors['required']"> Vous devez renseigner ce champ</div>
+    <div *ngIf="signupControls['nom'].errors['minlength']"> Nom doit contenir au moins 3 caractères</div>
+  </div>
+  </div>
+
+  <div class="col-12">
+    <label for="inputPassword4" class="form-label">Prenom</label>
+    <input type="text" class="form-control" id="inputPassword4" placeholder="Prenom"formControlName="prenom" class="text-dark"
+    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['prenom'].errors }" />
+  <div *ngIf="isFormSubmitted && signupControls['prenom'].errors" class="invalid-feedback">
+    <div *ngIf="signupControls['prenom'].errors['required']"> Vous devez renseigner ce champ</div>
+    <div *ngIf="signupControls['prenom'].errors['minlength']"> Prénom doit contenir au moins 3 caractères
+    </div>
+  </div>
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputAddress" placeholder="Email" formControlName="email" class="text-dark"
+    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['email'].errors }" />
+  <div *ngIf="isFormSubmitted && signupControls['email'].errors" class="invalid-feedback">
+    <div *ngIf="signupControls['email'].errors['required']"> Vous devez renseigner ce champ</div>
+    <div *ngIf="signupControls['email'].errors['email']"> Adresse e-mail non valide</div>
+  </div>
+  </div> 
+  <div class="col-12">
+    <label for="pass" class="form-label">Mot de passe</label>
+    <input type="password" class="form-control" id="pass" placeholder="Password" formControlName="password" class="text-dark"
+    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['password'].errors }" />
+  <div *ngIf="isFormSubmitted && signupControls['password'].errors" class="invalid-feedback">
+    <div *ngIf="signupControls['password'].errors['required']"> Vous devez renseigner ce champ</div>
+    <div *ngIf="signupControls['password'].errors['minlength']"> Mot de passe doit contenir au moins 8
+      caractères
+    </div>
+  </div>
+  </div> 
+  <div class="col-12">
+    <label for="cpass" class="form-label">Conifmer votre mot de passe</label>
+    <input type="password" class="form-control" id="cpass" placeholder="Confirm password" formControlName="confirmPassword"
+    class="text-dark"
+    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['confirmPassword'].errors }" />
+  <div *ngIf="isFormSubmitted && signupControls['confirmPassword'].errors" class="invalid-feedback">
+    <div *ngIf="signupControls['confirmPassword'].errors['required']"> Vous devez renseigner ce champ
+    </div>
+    <div *ngIf="signupControls['confirmPassword'].errors['confirmedValidator']">Mots de passe ne sont pas
+      identiques</div>
+  </div>
+  </div> 
+
+ 
+  <div class="col-12">
+    <button type="submit" class="btn btn-outline-primary w-100">S'inscrire</button>
+  </div>
+</form>
+  
