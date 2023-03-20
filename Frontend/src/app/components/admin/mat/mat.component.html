@@ -1,86 +1,266 @@
-<main id="main">
-  <div class="container">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Asset</th>
-          <th>Asset</th>
-          <th>Inventory Method</th>
-          <th>cap.date</th>
-          <th>Assest description</th>
-          <th>SN</th>
-          <th>User</th>
-          <th>location Inventaire</th>
-          <th>Remarque</th>
-          <th>cc</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>1193000173-0</td>
-          <td>1193000173-0</td>
-          <td>TO BE SCANNED</td>
-          <td>01/01/2012</td>
-          <td>1 Sagem biometric Therminal MA500</td>
-          <td>12470113</td>
-          <td>Magasin IT</td>
-          <td>Magasin IT</td>
-          <td>Magasin IT ( to be scrapped)</td>
-          <td>9310070600</td>
-          <td></td>
+<main class="main" id="main">
+  <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5 class="mb-0"> {{ action }}Une machine</h5>
+      </div>
+      <div class="card-body">
+        <form  [formGroup]="formMaeriel" (ngSubmit)="onSubmit()"> <div class="row">
           
+          <div class="col">
+            <div class="form-group">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Asset</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                      placeholder=" Asset......"  formControlName="asset" [ngClass]="{
+                        'is-invalid':
+                          isFormSubmitted && materielControls['asset'].errors
+                      }" />
+                    <div *ngIf="isFormSubmitted && materielControls['asset'].errors" class="invalid-feedback">
+                      <div *ngIf="materielControls['asset'].errors['required']">Vous devez renseigner ce champ </div>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Sub Asset</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                      placeholder=" eSub Asset......"  formControlName="sub_asset" [ngClass]="{
+                        'is-invalid':
+                          isFormSubmitted && materielControls['sub_asset'].errors
+                      }" />
+                    <div *ngIf="isFormSubmitted && materielControls['sub_asset'].errors" class="invalid-feedback">
+                      <div *ngIf="materielControls['sub_asset'].errors['required']">Vous devez renseigner ce champ </div>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Inventory method</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                    placeholder=" Inventory Method....."  formControlName="inv_method" [ngClass]="{
+                      'is-invalid':
+                        isFormSubmitted && materielControls['inv_method'].errors
+                    }" />
+                  <div *ngIf="isFormSubmitted && materielControls['inv_method'].errors" class="invalid-feedback">
+                    <div *ngIf="materielControls['inv_method'].errors['required']">Vous devez renseigner ce champ </div>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Date </label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input name="date"  min="{{currentDate | date:'yyyy-MM-dd'}}"  type="date" class="form-control" id="basic-icon-default-fullname"
+                  placeholder=" Cap date......"  formControlName="date" [ngClass]="{
+                    'is-invalid':
+                      isFormSubmitted && materielControls ['date'].errors
+                  }" />
+                <div *ngIf="isFormSubmitted && materielControls['date'].errors" class="invalid-feedback">
+                  <div *ngIf="materielControls['date'].errors['required']">
+                    Vous devez renseigner ce champ
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           
-      
-    
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>1193000174-0</td>
-          <td>1193000174</td>
-          <td>TO BE SCANNED</td>
-          <td>01/01/2012</td>
-          <td>1 Sagem biometric Therminal MA500</td>
-          <td>A verifier le S/N</td>	
-          
-          <td> Magasin IT</td>
+         
+          <div class="col">
+            <div class="form-group">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">SN</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                      placeholder=" SN......"  formControlName="sn" [ngClass]="{
+                        'is-invalid':
+                          isFormSubmitted && materielControls['sn'].errors
+                      }" />
+                    <div *ngIf="isFormSubmitted && materielControls['sn'].errors" class="invalid-feedback">
+                      <div *ngIf="materielControls['sn'].errors['required']">Vous devez renseigner ce champ </div>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="largeSelect" class="form-label">User</label>
+              <select id="largeSelect" name="user_id" class="form-select form-select-lg" formControlName="user_id"
+              [ngClass]="{
+                'is-invalid':
+                  isFormSubmitted && materielControls['user_id'].errors
+              }">
+              <option *ngFor="let users of listUsers" [ngValue]="users.id">
+                {{ users.first_name +" "+users.last_name }}
+              </option>
+            </select>
+            <div *ngIf="isFormSubmitted && materielControls['user_id'].errors" class="invalid-feedback">
+              <div *ngIf="materielControls['user_id'].errors['required']">
+                Vous devez renseigner ce champ
+              </div>
+            </div>
+
+            </div>
+            <div class="col">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Location</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                    placeholder=" Location......"  formControlName="location" [ngClass]="{
+                      'is-invalid':
+                        isFormSubmitted && materielControls['location'].errors
+                    }" />
+                  <div *ngIf="isFormSubmitted && materielControls['location'].errors" class="invalid-feedback">
+                    <div *ngIf="materielControls['location'].errors['required']">Vous devez renseigner ce champ </div>
+                  </div>
+                
+                </div>
+              </div>
            
+            </div>
+          </div>
+          <div class="row">
+          
+            <div class="col">
+              <div class="form-group">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Remarque</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                        placeholder=" Remarque......"  formControlName="remarque" [ngClass]="{
+                          'is-invalid':
+                            isFormSubmitted && materielControls['remarque'].errors
+                        }" />
+                      <div *ngIf="isFormSubmitted && materielControls['remarque'].errors" class="invalid-feedback">
+                        <div *ngIf="materielControls['remarque'].errors['required']">Vous devez renseigner ce champ </div>
+                      </div>
+                    
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">CC</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                        placeholder=" CC......"  formControlName="cc" [ngClass]="{
+                          'is-invalid':
+                            isFormSubmitted && materielControls['cc'].errors
+                        }" />
+                      <div *ngIf="isFormSubmitted && materielControls['cc'].errors" class="invalid-feedback">
+                        <div *ngIf="materielControls['cc'].errors['required']">Vous devez renseigner ce champ </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
        
-          <td>Magasin IT ( to be scrapped)</td>
-          <td></td>
-          <td> 9310070600</td>	
-           
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>1193000663-0</td>
-          <td> 1193000663</td>
     
-          <td>IMPAIRMENT TEST</td>
-          <td>30/06/2015</td>
-          <td>system for monotoring for humidity in server room</td>
-          <td>IMS-1002-INT 00:07:F9:00:72:52</td>
-          <td>License , existe</td>
-          <td>SAL SERV</td>
-          <td></td>
-          <td>9310021010</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>1193000664-0</td>
-          <td>1193000664</td>
-          <td>TO BE SCANNED</td>
-          <td>31/08/2015</td>
-          <td>fire proof door for room ups</td>
-          <td>no Serial Number</td>
-          <td>Scanner par Med amine( doors salle serveur)</td>
-          <td></td>
-          <td>9310070600</td>
-          
+       
 
 
 
+          <div class="card-header d-flex align-items-center justify-content-center">
+            <div>
+              <button class="btn btn-outline-warning mr-1">Annuler</button>
+              <button type="submit"  *ngIf="!inEdit"  class="btn btn-outline-primary" >Ajouter
+               
+              </button>
+              <button *ngIf="inEdit" (click)="updateMateriel()"  type="button" class="btn btn-outline-primary"
+                >Modifier
+               
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-center">
+      <h5>Liste des Materiels</h5>
+    </div>
 
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Asset</th>
+            <th>Sub Asset</th>
+            <th>INVENTORY METHOD</th>
+            <th>Date</th>
+            <th>SN</th>
+            <th>User</th>
+            <th>Location</th>
+            <th>Remarque</th>
+            <th>CC</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" *ngFor="let mat of listMateriels; let i = index">
+          <tr>
+            <td>{{mat.asset}}</td>
+            <td>{{mat.sub_asset}}</td>
+            <td>{{mat.inv_method}}</td>
 
-<div>
+            <td>{{mat.date | date}}</td>
+            <td>{{mat.sn}}</td>
+            <td>{{ mat.first_name + " " + mat.last_name }}</td>
+            <td>{{mat.location}}</td>
+            <td>{{mat.remarque}}</td>
+            <td>{{mat.cc}}</td>
+            <td>
+              <button [routerLink]="['/admin/mat/edit', mat.id]" class="btn btn-outline-primary">
+                <i class="bx bx-edit-alt me-1">Edit</i>
+              </button>
+              <button (click)="delete(mat.id)" class="btn btn-outline-danger">
+                <i class="bx bx-trash me-1">Delete</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

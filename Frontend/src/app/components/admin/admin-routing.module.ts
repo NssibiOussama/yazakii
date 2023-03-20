@@ -10,6 +10,8 @@ import { AmalComponent } from 'src/app/components/admin/amal/amal.component';
 const routes: Routes = [
   { path:'',component:DashboardComponent,},
   {path:'mat' , component:MatComponent},
+  { path: 'mat/edit/:id', component: MatComponent },
+
 
   { path: 'amal', component:AmalComponent },  
   { path: 'commande', component:CommandeComponent},
