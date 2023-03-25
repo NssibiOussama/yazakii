@@ -1,0 +1,118 @@
+<main id="main" class="main">
+    <link rel="stylesheet">
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-center">
+          <h5 class="mb-0">{{action}} un membre </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="signup()">
+            <div class="form-group">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="nom" type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Nom"
+                    formControlName="nom" 
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['nom'].errors }" />
+                  <div *ngIf="isFormSubmitted && signupControls['nom'].errors" class="invalid-feedback">
+                    <div *ngIf="signupControls['nom'].errors['required']"> Vous devez renseigner ce champ</div>
+                    <div *ngIf="signupControls['nom'].errors['minlength']"> Nom doit contenir au moins 3 caractères</div>
+                  </div>
+                
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname2">Prenom</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="type" type="text" class="form-control" id="basic-icon-default-fullname2"
+                      placeholder="Prénom" formControlName="prenom" 
+                      [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['prenom'].errors }" />
+                    <div *ngIf="isFormSubmitted && signupControls['prenom'].errors" class="invalid-feedback">
+                      <div *ngIf="signupControls['prenom'].errors['required']"> Vous devez renseigner ce champ</div>
+                      <div *ngIf="signupControls['prenom'].errors['minlength']"> Prenom doit contenir au moins 3 caractères</div>
+                    </div>
+                  
+                  </div>
+  
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="email" type="text" class="form-control" id="basic-icon-default-email"
+                      placeholder="email" formControlName="email" 
+                      [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['email'].errors }" />
+                    <div *ngIf="isFormSubmitted && signupControls['email'].errors" class="invalid-feedback">
+                      <div *ngIf="signupControls['email'].errors['required']"> Vous devez renseigner ce champ</div>
+                      <div *ngIf="signupControls['email'].errors['minlength']"> Prenom doit contenir au moins 3 caractères</div>
+                    </div>
+                   
+                  </div>
+  
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Role</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <select name="role" id="role" class="form-control" formControlName="role"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['role'].errors }">
+                    <option value="admin" class="form-control" selected>admin</option>
+                    <option value="user" class="form-control">user</option>
+                  </select>
+                  <div *ngIf="isFormSubmitted && signupControls['role'].errors" class="invalid-feedback">
+                    <div *ngIf="signupControls['role'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-header d-flex align-items-center justify-content-center">
+              <div>
+                <button (click)="onReset()" class="btn btn-outline-warning mr-1">Annuler</button>
+                <button (click)="signup()" *ngIf="!inEdit"  type="button" class="btn btn-outline-primary">Ajouter</button>
+                <button  type="button" *ngIf="inEdit" (click)="updqteUser()"  class="btn btn-outline-primary">Modifier</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5>Liste des catégories des jeux</h5>
+      </div>
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>email</th>
+              <th>role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0" *ngFor="let user of listUsers; let i = index">
+            <tr>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+              <td>
+                <button class="btn btn-outline-primary" [routerLink]="['/admin/users/edit',user.id]"><i
+                    class="bx bx-edit-alt me-1">Modifier</i> </button>
+                <button class="btn btn-outline-danger" (click)="delete(user.id)"><i
+                    class="bx bx-trash me-1">Supprimer</i> </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>

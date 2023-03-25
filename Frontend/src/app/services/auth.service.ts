@@ -34,9 +34,9 @@ export class AuthService {
 
   }
 
-  signup(firstname:string, lastname:string,email: string, password: string) {
+  signup(firstname:string, lastname:string,email: string, role: string) {
 
-    return this.apiService.signup(firstname,lastname, email, password);
+    return this.apiService.signup(firstname,lastname, email, role);
 
   }
   logout(){

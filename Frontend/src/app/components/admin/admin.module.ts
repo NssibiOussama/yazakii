@@ -8,6 +8,7 @@ import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component'
 import { MatComponent } from './mat/mat.component';
 import { AmalComponent } from 'src/app/components/admin/amal/amal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ScrapesComponent,
     DashboardComponent,
     MatComponent,
-    AmalComponent
+    AmalComponent,
+    UsersComponent
 
   ],
   imports: [

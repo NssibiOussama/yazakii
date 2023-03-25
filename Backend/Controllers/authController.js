@@ -16,7 +16,8 @@ const sigunup = async (req, res, next) => {
       } else {
         // username is available
         const salt = await bcrypt.genSalt(7)
-        bcrypt.hash(req.body.password, salt, (err, hash) => {
+        const password =makeid(12);
+        bcrypt.hash(password, salt, (err, hash) => {
           if (err) {
             return res.status(500).send({
               msg: err,
@@ -26,23 +27,42 @@ const sigunup = async (req, res, next) => {
             const image =
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZiiiqDB3T5-nKWzCEYN_ZGaA7qaYrfIQE3Q&usqp=CAU'
             connection.query(
-              'INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`,`image`) VALUES (?,?,?,?,?)',
+              'INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`,`image`,`role`) VALUES (?,?,?,?,?,?)',
               [
                 req.body.firstname,
                 req.body.lastname,
                 req.body.email,
                 hash,
                 image,
+                req.body.role
               ],
               (err, result) => {
                 if (err) {
                   return res.status(400).send({
                     msg: err,
                   })
+                } else {
+                  let mailOptions = {
+                    from: 'adrenaline4games@gmail.com', 
+                    to: req.body.email, 
+                    subject: 'Credationals for yazaki',
+                    text: '',
+                    html: `<h3>Username et password :</h3> 
+                    <p>Bonjour,</p> 
+                    <p>Password : ${password}</p> 
+                    <p>Email : ${req.body.email}</p> 
+                    <p>A très bientôt !</p>`
+            
+                };
+                transporter.sendMail(mailOptions, (err, data) => {
+                    if (err) {
+                        res.status(404).send(err)
+                    }
+                    res.status(200).send(data)
+                });
+
                 }
-                return res.status(201).send({
-                  msg: 'Registered!',
-                })
+              
               },
             )
           }
