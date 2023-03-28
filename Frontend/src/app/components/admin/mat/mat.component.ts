@@ -23,6 +23,7 @@ export class MatComponent implements OnInit {
     location: new FormControl(''),
     remarque: new FormControl(''),
     cc: new FormControl(''),
+    asset_description : new FormControl(''),
     acceptTerms: new FormControl(false),
   });
   isFormSubmitted = false;
@@ -75,6 +76,7 @@ export class MatComponent implements OnInit {
       location: [this.materiel.location, Validators.required],
       remarque: [this.materiel.remarque, Validators.required],
       cc: [this.materiel.cc, Validators.required],
+      asset_description: [this.materiel.asset_description, Validators.required],
   
       
     });
@@ -117,6 +119,8 @@ export class MatComponent implements OnInit {
       this.materiel.location = this.formMaeriel.value.location
       this.materiel.remarque = this.formMaeriel.value.remarque
       this.materiel.cc = this.formMaeriel.value.cc
+      this.materiel.asset_description = this.formMaeriel.value.asset_description
+
  
    
    

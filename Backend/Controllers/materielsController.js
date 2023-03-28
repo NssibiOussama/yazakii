@@ -2,7 +2,7 @@ const connection = require("../util/database");
 
 const getMateriels = async (req, res, next) => {
   connection.query(
-    "SELECT users.first_name,users.last_name,materiels.id,materiels.asset,materiels.sub_asset,materiels.inv_method,materiels.date,materiels.sn,materiels.user_id,materiels.location,materiels.location,materiels.remarque,materiels.cc FROM `materiels` inner join users on materiels.user_id = users.id;",
+    "SELECT users.first_name,users.last_name,materiels.id,materiels.asset,materiels.sub_asset,materiels.inv_method,materiels.date,materiels.sn,materiels.user_id,materiels.location,materiels.location,materiels.remarque,materiels.cc ,materiels.asset_description FROM `materiels` inner join users on materiels.user_id = users.id;",
     (error, data, fields) => {
       if (error) res.status(500).send(error);
       else res.status(200).json(data);
@@ -36,8 +36,9 @@ const updateMateriel = async (req, res) => {
   const location = req.body.location;
   const remarque = req.body.remarque;
   const cc = req.body.cc;
+  const asset_description = req.body.asset_description
   connection.query(
-    "UPDATE `materiels` SET `asset`=?,`sub_asset`=?,`inv_method`=?,`date`=?,`sn`=?,`user_id`=?,`location`=?,`remarque`=?,`cc`=?  WHERE id = ?",
+    "UPDATE `materiels` SET `asset`=?,`sub_asset`=?,`inv_method`=?,`date`=?,`sn`=?,`user_id`=?,`location`=?,`remarque`=?,`cc`=? ,`asset_description`=?  WHERE id = ?",
     [
         asset,
         sub_asset,
@@ -48,7 +49,9 @@ const updateMateriel = async (req, res) => {
         location,
         remarque,
         cc,
+        asset_description,
         id,
+        
     ],
     (err, data, fields) => {
       if (err) res.status(500).send(err);
@@ -70,8 +73,10 @@ const addMateriel = async (req, res) => {
   const location = req.body.location;
   const remarque = req.body.remarque;
   const cc = req.body.cc;
+  const asset_description = req.body.asset_description
+
   connection.query(
-    "INSERT INTO `materiels`(`asset`,`sub_asset`,`inv_method`,`date`,`sn`,`user_id`,`location`,`remarque` ,`cc`  ) VALUES (?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO `materiels`(`asset`,`sub_asset`,`inv_method`,`date`,`sn`,`user_id`,`location`,`remarque` ,`cc`,`asset_description`  ) VALUES (?,?,?,?,?,?,?,?,?,?)",
     [
         asset,
         sub_asset,
@@ -82,6 +87,7 @@ const addMateriel = async (req, res) => {
         location,
         remarque,
         cc,
+        asset_description
     ],
     (err, data, fields) => {
       if (err) res.status(500).send(err);

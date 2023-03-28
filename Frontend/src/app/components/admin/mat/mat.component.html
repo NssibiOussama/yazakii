@@ -2,7 +2,7 @@
   <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-header d-flex align-items-center justify-content-center">
-        <h5 class="mb-0"> {{ action }}Une machine</h5>
+        <h5 class="mb-0"> {{ action }} Une machine</h5>
       </div>
       <div class="card-body">
         <form  [formGroup]="formMaeriel" (ngSubmit)="onSubmit()"> <div class="row">
@@ -61,6 +61,27 @@
                     }" />
                   <div *ngIf="isFormSubmitted && materielControls['inv_method'].errors" class="invalid-feedback">
                     <div *ngIf="materielControls['inv_method'].errors['required']">Vous devez renseigner ce champ </div>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Asset Description</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                    placeholder=" Inventory Method....."  formControlName="asset_description" [ngClass]="{
+                      'is-invalid':
+                        isFormSubmitted && materielControls['asset_description'].errors
+                    }" />
+                  <div *ngIf="isFormSubmitted && materielControls['asset_description'].errors" class="invalid-feedback">
+                    <div *ngIf="materielControls['asset_description'].errors['required']">Vous devez renseigner ce champ </div>
                   </div>
                 
                 </div>
@@ -229,6 +250,7 @@
             <th>Asset</th>
             <th>Sub Asset</th>
             <th>INVENTORY METHOD</th>
+            <th>Asset Description</th>
             <th>Date</th>
             <th>SN</th>
             <th>User</th>
@@ -243,7 +265,7 @@
             <td>{{mat.asset}}</td>
             <td>{{mat.sub_asset}}</td>
             <td>{{mat.inv_method}}</td>
-
+             <td>{{mat.asset_description}}</td>
             <td>{{mat.date | date}}</td>
             <td>{{mat.sn}}</td>
             <td>{{ mat.first_name + " " + mat.last_name }}</td>

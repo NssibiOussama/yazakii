@@ -10,6 +10,7 @@ export class Materiel {
      location !:string
      remarque !:string
      cc !: string
+     asset_description !: string
      first_name !: string
      last_name !: string
  

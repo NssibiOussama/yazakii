@@ -10,8 +10,8 @@ export class AppComponent {
   title = 'admindashboard';
   constructor(private elementRef: ElementRef,  public  _router: Router, public authService: AuthService) {
     
-    this.authService.isLoggedIn$.subscribe(isLoggedIn => 
-      !isLoggedIn && _router.navigate(['/login']) )
+    // this.authService.isLoggedIn$.subscribe(isLoggedIn => 
+     // !isLoggedIn && _router.navigate(['/login']) )
 
    }
 

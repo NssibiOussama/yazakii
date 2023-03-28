@@ -6,6 +6,8 @@ const body_parser = require('body-parser')
 const authRouter = require('./Routes/auth')
 const materielRouter = require('./Routes/materiel')
 const userRouter = require('./Routes/user')
+const mdpRouter =require('./Routes/mdp')
+
 
 
 
@@ -36,6 +38,8 @@ app.use(function (req, res, next) {
 app.use('/api', authRouter);
 app.use('/materiel',materielRouter)
 app.use('/user',userRouter)
+app.use('/api/mdp',mdpRouter)
+
 
 
 

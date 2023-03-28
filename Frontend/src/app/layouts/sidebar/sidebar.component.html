@@ -1,5 +1,5 @@
 <aside id="sidebar" class="sidebar">
-   <ul class="sidebar-nav" id="sidebar-nav">
+   <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role=='admin'">
       <li class="nav-item"> <a class="nav-link " routerLink="/admin"> <i class="bi bi-grid"></i>
             <span>Dashboard</span> </a></li>
       <li class="nav-item">
@@ -19,5 +19,10 @@
                   <span>Scrapes</span> </a></li>
                   <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/users"> <i class= "bi bi-menu-button-wide"></i>
                      <span>Users</span> </a></li>
+   </ul>
+
+   <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role=='user'">
+               <li class="nav-item"> <a class="nav-link collapsed" routerLink="/user/commandes"> <i class= "bi bi-menu-button-wide"></i>
+                  <span>Commandes</span> </a></li>
    </ul>
 </aside>
