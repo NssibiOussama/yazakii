@@ -1,1 +1,51 @@
-<p>scrapes works!</p>
+<main class="main" id="main">
+
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5>Liste des Materiels</h5>
+      </div>
+  
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>Asset</th>
+              <th>Sub Asset</th>
+              <th>INVENTORY METHOD</th>
+              <th>Asset Description</th>
+              <th>Date</th>
+              <th>SN</th>
+              <th>User</th>
+              <th>Location</th>
+              <th>Remarque</th>
+              <th>CC</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0" *ngFor="let mat of listScrapeMateriels; let i = index">
+            <tr>
+              <td>{{mat.asset}}</td>
+              <td>{{mat.sub_asset}}</td>
+              <td>{{mat.inv_method}}</td>
+               <td>{{mat.asset_description}}</td>
+              <td>{{mat.date | date}}</td>
+              <td>{{mat.sn}}</td>
+              <td>{{ mat.first_name + " " + mat.last_name }}</td>
+              <td>{{mat.location}}</td>
+              <td>{{mat.remarque}}</td>
+              <td>{{mat.cc}}</td>
+              <td>
+                <button (click)="delete(mat.id)" class="btn btn-outline-danger">
+                  <i class="bx bx-trash me-1">Delete</i>
+                </button>
+                <button (click)="scrape(mat.id)" class="btn btn-outline-success">
+                  <i >Scrape</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  

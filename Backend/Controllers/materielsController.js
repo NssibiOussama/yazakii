@@ -2,7 +2,7 @@ const connection = require("../util/database");
 
 const getMateriels = async (req, res, next) => {
   connection.query(
-    "SELECT users.first_name,users.last_name,materiels.id,materiels.asset,materiels.sub_asset,materiels.inv_method,materiels.date,materiels.sn,materiels.user_id,materiels.location,materiels.location,materiels.remarque,materiels.cc ,materiels.asset_description FROM `materiels` inner join users on materiels.user_id = users.id;",
+    "Select users.first_name,users.last_name,materiels.id,materiels.asset,materiels.sub_asset,materiels.inv_method,materiels.date,materiels.sn,materiels.user_id,materiels.location,materiels.location,materiels.remarque,materiels.cc ,materiels.asset_description FROM `materiels` inner join users on materiels.user_id = users.id where materiels.scrape = 0;",
     (error, data, fields) => {
       if (error) res.status(500).send(error);
       else res.status(200).json(data);
@@ -110,6 +110,33 @@ const deleteMateriel = async (req, res) => {
   );
 };
 
+const updateScrape = async (req,res) =>{
+  const id = req.params.id 
+  connection.query("UPDATE `materiels` SET `scrape`= 1  WHERE id = ?",[id],
+  (err,data)=>{
+    if(err) res.status(500).send(err)
+    else res.status(200).send({msg:"Materiel modifié avec succées"})
+  })
+}
+
+const updateScrape2 = async (req,res) =>{
+  const id = req.params.id 
+  connection.query("UPDATE `materiels` SET `scrape`= 0  WHERE id = ?",[id],
+  (err,data)=>{
+    if(err) res.status(500).send(err)
+    else res.status(200).send({msg:"Materiel modifié avec succées"})
+  })
+}
+const getScrapeMateriels = async (req, res, next) => {
+  connection.query(
+    "Select users.first_name,users.last_name,materiels.id,materiels.asset,materiels.sub_asset,materiels.inv_method,materiels.date,materiels.sn,materiels.user_id,materiels.location,materiels.location,materiels.remarque,materiels.cc ,materiels.asset_description FROM `materiels` inner join users on materiels.user_id = users.id where materiels.scrape = 1;",
+    (error, data, fields) => {
+      if (error) res.status(500).send(error);
+      else res.status(200).json(data);
+    }
+  );
+};
+
 
 
 
@@ -120,5 +147,8 @@ module.exports = {
     getMaterielById,
     updateMateriel,
     addMateriel,
-    deleteMateriel
+    deleteMateriel,
+    updateScrape,
+    updateScrape2,
+    getScrapeMateriels
 };

@@ -188,6 +188,32 @@ export class MatComponent implements OnInit {
       }
     });
   }
+  scrape(id : any){
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: 'Vous ne pourrez pas revenir en arrière!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui,!',
+      cancelButtonText: 'Non, annuler!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.serviceMateriel.updateScrape(id).subscribe(
+          (response: any) => {
+            Swal.fire("", 'Modifié avec succés!', 'success');
+          },
+          error => {
+            Swal.fire('', 'Erreur', 'error')
+          },
+          () => {
+            this.getMateriels();
+          }
+        );
+      }
+    });
+    
+  }
 
 
 }

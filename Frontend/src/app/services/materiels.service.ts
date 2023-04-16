@@ -43,5 +43,15 @@ export class MaterielsService {
   updateMateriel(id: number, tor: Materiel): Observable<Materiel> {
     return this.http.put<Materiel>(this.MaterielUrl + '/' + id, tor, this.httpOptions);
   }
+  updateScrape(id:number){
+    return this.http.put(this.MaterielUrl+'/scrape/'+id,this.httpOptions)
+  }
+  getScrapeMateriel():Observable<any[]>{
+    return this.http.get<any[]>(this.MaterielUrl+ '/scrape',this.httpOptions)
+
+  }
+  updateScrape2(id:number){
+    return this.http.put(this.MaterielUrl+'/scrape2/'+id,this.httpOptions)
+  }
 }
 
