@@ -14,14 +14,18 @@ import { UpdatePasswordComponent } from './pages/update-password/update-password
 const routes: Routes = [
  
   {
-    path: 'admin', component: AdminComponent, canActivate: [HasRoleGuard], data: { role: ['admin'] },
+    path: 'admin', component: AdminComponent, canActivate: [HasRoleGuard], data: { role: ['Administrateur' , 'Manager'] },
     children: [
       { path: '', loadChildren: () => import('./components/admin/admin.module').then(module => module.AdminModule) }
     ],
     title:'Admin dashboard'
   },
   {
-    path: 'user', component: UserComponent, canActivate: [HasRoleGuard], data: { role: ['user'] },
+    path: 'user', component: UserComponent, canActivate: [HasRoleGuard], 
+    data: { 
+      role: ['Administrateur', 'Manager'], 
+      negateRoles: true 
+    },
     children: [
       { path: '', loadChildren: () => import('./components/user/user/user.module').then(module => module.UserModule) }
     ],

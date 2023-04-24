@@ -17,7 +17,7 @@ export class apiService {
     return this.http.post('http://localhost:3000/api/login', { email, password }, this.httpOptions);
   }
 
-  signup(firstname:string,lastname:string,email: string, role: string): Observable<any> {
-    return this.http.post('http://localhost:3000/api/signup', { firstname,lastname,email, role }, this.httpOptions);
+  signup(firstname:string,lastname:string,email: string, role: string,departement:number): Observable<any> {
+    return this.http.post('http://localhost:3000/api/signup', { firstname,lastname,email, role,departement }, this.httpOptions);
   }
 }

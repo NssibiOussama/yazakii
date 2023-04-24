@@ -62,8 +62,7 @@
                   <div class="input-group input-group-merge">
                     <select name="role" id="role" class="form-control" formControlName="role"
                     [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['role'].errors }">
-                    <option value="admin" class="form-control" selected>admin</option>
-                    <option value="user" class="form-control">user</option>
+                    <option *ngFor = "let role of listRoles" [ngValue]="role.role" class="form-control" selected>{{role.role}}</option>
                   </select>
                   <div *ngIf="isFormSubmitted && signupControls['role'].errors" class="invalid-feedback">
                     <div *ngIf="signupControls['role'].errors['required']"> Vous devez renseigner ce champ</div>
@@ -71,6 +70,24 @@
                   </div>
                 </div>
               </div>
+
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Departement</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <select name="departement" id="departement" class="form-control" formControlName="departement"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && signupControls['departement'].errors }">
+                    <option *ngFor = "let dept of listDepartements" [ngValue]="dept.id" class="form-control" selected>{{dept.dept}}</option>
+                  </select>
+                  <div *ngIf="isFormSubmitted && signupControls['departement'].errors" class="invalid-feedback">
+                    <div *ngIf="signupControls['departement'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
             <div class="card-header d-flex align-items-center justify-content-center">
               <div>

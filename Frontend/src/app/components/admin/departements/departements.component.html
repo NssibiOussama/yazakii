@@ -1,0 +1,67 @@
+<main id="main" class="main">
+    <link rel="stylesheet">
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-center">
+          <h5 class="mb-0">{{action}} un departement </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formDepartement" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="row">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Departement</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="nom" type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Departement"
+                    formControlName="dept" 
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && DepartementControls['dept'].errors }" />
+                  <div *ngIf="isFormSubmitted && DepartementControls['dept'].errors" class="invalid-feedback">
+                    <div *ngIf="DepartementControls['dept'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              
+           
+       
+            </div>
+            <div class="card-header d-flex align-items-center justify-content-center">
+              <div>
+                <button (click)="onReset()" class="btn btn-outline-warning mr-1">Annuler</button>
+                <button *ngIf="!inEdit"  type="submit" class="btn btn-outline-primary">Ajouter</button>
+                <button  type="button" *ngIf="inEdit" (click)="updateDepartement()"  class="btn btn-outline-primary">Modifier</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5>Liste des Departements</h5>
+      </div>
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>Departement</th>
+              <th>Actions</th>
+
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0" *ngFor="let dept of listDepartements; let i = index">
+            <tr>
+              <td>{{dept.dept}}</td>
+  
+              <td>
+                <button class="btn btn-outline-primary" [routerLink]="['/admin/departements/edit',dept.id]"><i
+                    class="bx bx-edit-alt me-1">Modifier</i> </button>
+                <button class="btn btn-outline-danger" (click)="delete(dept.id)"><i
+                    class="bx bx-trash me-1">Supprimer</i> </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>

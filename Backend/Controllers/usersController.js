@@ -26,12 +26,13 @@ const updateUsers = async (req, res) => {
   const id = req.params.id;
  
   connection.query(
-    "UPDATE `users` SET `first_name`=?,`last_name`=?,`email`=?,`role`=? WHERE `id`=?",
+    "UPDATE `users` SET `first_name`=?,`last_name`=?,`email`=?,`role`=?,`departement`=? WHERE `id`=?",
     [
         req.body.firstname,
         req.body.lastname,
         req.body.email,
         req.body.role,
+        req.body.departement,
         id,
       
     ],

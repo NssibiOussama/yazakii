@@ -49,7 +49,20 @@ title="Connexion"
     if (this.formLogin.invalid) {
       return;
     }
-    this.authService.login(this.formLogin.value.email,this.formLogin.value.password).subscribe((data) => this.router.navigate([`${this.authService.user.role}`]),
+    this.authService.login(this.formLogin.value.email,this.formLogin.value.password).subscribe((data) => {
+      console.log(this.authService.user);
+      if (this.authService.user.role == 'Administrateur' || this.authService.user.role == 'Manager') {
+        this.router.navigate(['/admin'])
+
+        
+      } else {
+        this.router.navigate(['/user'])
+
+        
+      }
+      
+      
+    },
     err => Swal.fire('','Adresse ou mot de passe incorrecte ! ','error'))
   }
 

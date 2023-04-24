@@ -4,6 +4,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UsersService } from 'src/app/services/users.service';
+import { Role } from 'src/app/models/role.model';
+import { Departement } from 'src/app/models/departement.model';
+import { DepartementService } from 'src/app/services/departement.service';
+import { RoleService } from 'src/app/services/role.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -16,6 +20,7 @@ export class UsersComponent implements OnInit {
     prenom: new FormControl(''),
     email: new FormControl(''),
     role: new FormControl(''),
+    departement: new FormControl(''),
 
   });
   isFormSubmitted = false;
@@ -23,15 +28,19 @@ export class UsersComponent implements OnInit {
   prenom!:string;
   email!:string;
   role!:string;
+  departement!:number;
   action = 'Ajouter'
   inEdit = false;
   listUsers: any[] = []
   id: any;
+  listRoles: Role[] = []
+  listDepartements: Departement[] = []
 
 
 
 
-  constructor(private authService: AuthService, private router: Router,private formBuilder: FormBuilder,private serviceUser: UsersService,private route: ActivatedRoute,
+
+  constructor(private authService: AuthService, private router: Router,private formBuilder: FormBuilder,private serviceUser: UsersService,private route: ActivatedRoute,private serviceRole: RoleService,private serviceDepartement :DepartementService
     ) {
    
    }
@@ -39,6 +48,9 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.loadForm()
     this.getUsers()
+    this.getRoles()
+    this.getDepartements()
+    this.getDepartements
     this.route.paramMap.subscribe(params => {
       if (params.get('id')) {
         this.id = params.get('id');
@@ -47,6 +59,14 @@ export class UsersComponent implements OnInit {
         this.getById(params.get('id'));
       }
     });
+  }
+  getRoles() {
+    this.serviceRole.getRoles().subscribe((data:any) => this.listRoles = data)
+
+  }
+  getDepartements() {
+    this.serviceDepartement.getDepartement().subscribe((data:any) => this.listDepartements = data)
+
   }
   successNotification() {
     Swal.fire("", 'Supprimé avec succés!', 'success');
@@ -64,6 +84,7 @@ export class UsersComponent implements OnInit {
       prenom: [this.prenom, [Validators.required,Validators.minLength(3)]],
       email: [this.email, [Validators.required,Validators.email]],
       role: [this.role, Validators.required],
+      departement: [this.departement, Validators.required],
     })}
     onReset() {
       this.isFormSubmitted = false;
@@ -75,9 +96,10 @@ export class UsersComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.authService.signup(this.registerForm.value.nom, this.registerForm.value.prenom, this.registerForm.value.email, this.registerForm.value.role).subscribe((data) => {
-      Swal.fire('  compte a été creé avec succés.','success')
+    this.authService.signup(this.registerForm.value.nom, this.registerForm.value.prenom, this.registerForm.value.email, this.registerForm.value.role,this.registerForm.value.departement).subscribe((data) => {
+      Swal.fire("",'  compte a été creé avec succés.','success')
       this.getUsers()
+      this.onReset()
     },
     err => Swal.fire('',err.error.msg,'error') )
   }
@@ -85,6 +107,7 @@ export class UsersComponent implements OnInit {
     this.serviceUser.getUsers().subscribe((data) => this.listUsers = data)
 
   }
+
   delete(id:any){
     Swal.fire({
       title: 'Êtes-vous sûr ?',

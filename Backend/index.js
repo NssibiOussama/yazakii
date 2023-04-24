@@ -8,6 +8,9 @@ const materielRouter = require('./Routes/materiel')
 const userRouter = require('./Routes/user')
 const mdpRouter =require('./Routes/mdp')
 const demandeRouter =require('./Routes/demande')
+const departementRouter =require('./Routes/departements')
+const roleRouter =require('./Routes/role')
+
 
 
 
@@ -42,6 +45,8 @@ app.use('/materiel',materielRouter)
 app.use('/user',userRouter)
 app.use('/api/mdp',mdpRouter)
 app.use('/demande',demandeRouter)
+app.use('/departement',departementRouter)
+app.use('/role',roleRouter)
 
 
 

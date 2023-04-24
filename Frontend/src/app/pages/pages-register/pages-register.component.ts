@@ -17,6 +17,7 @@ export class PagesRegisterComponent implements OnInit {
     prenom: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
+    departement: new FormControl(''),
     acceptTerms: new FormControl(false),
   });
   isFormSubmitted = false;
@@ -24,6 +25,7 @@ export class PagesRegisterComponent implements OnInit {
   prenom!:string;
   email!:string;
   password!:string;
+  departement!:number;
   confirmPassword!:string;
 
   constructor(private authService: AuthService, private router: Router,private formBuilder: FormBuilder) {
@@ -47,7 +49,9 @@ export class PagesRegisterComponent implements OnInit {
       nom: [this.nom, [Validators.required, Validators.minLength(3)]],
       prenom: [this.prenom, [Validators.required,Validators.minLength(3)]],
       email: [this.email, [Validators.required,Validators.email]],
-      password: [this.password, [Validators.required,Validators.minLength(8)]],
+      departement: [this.departement, Validators.required],
+      password: [this.password, [Validators.required,Validators.minLength(8)]
+    ],
       confirmPassword: [this.confirmPassword, [Validators.required]]
     }, { 
       validator: ConfirmedValidator('password', 'confirmPassword')
@@ -58,7 +62,7 @@ export class PagesRegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.authService.signup(this.registerForm.value.nom, this.registerForm.value.prenom, this.registerForm.value.email, this.registerForm.value.password).subscribe((data) => {
+    this.authService.signup(this.registerForm.value.nom, this.registerForm.value.prenom, this.registerForm.value.email, this.registerForm.value.password,this.departement).subscribe((data) => {
       Swal.fire('Bienvenue !',' Votre compte a été creé avec succés.','success')
       this.router.navigate(['/login'])
     },

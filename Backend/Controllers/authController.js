@@ -27,14 +27,15 @@ const sigunup = async (req, res, next) => {
             const image =
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZiiiqDB3T5-nKWzCEYN_ZGaA7qaYrfIQE3Q&usqp=CAU'
             connection.query(
-              'INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`,`image`,`role`) VALUES (?,?,?,?,?,?)',
+              'INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`,`image`,`role`,`departement`) VALUES (?,?,?,?,?,?,?)',
               [
                 req.body.firstname,
                 req.body.lastname,
                 req.body.email,
                 hash,
                 image,
-                req.body.role
+                req.body.role,
+                req.body.departement
               ],
               (err, result) => {
                 if (err) {

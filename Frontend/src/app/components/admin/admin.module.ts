@@ -2,23 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { CommandeComponent } from 'src/app/components/admin/commande/commande.component';
 import { ScrapesComponent } from 'src/app/components/admin/scrapes/scrapes.component';
 import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { MatComponent } from './mat/mat.component';
 import { AmalComponent } from 'src/app/components/admin/amal/amal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
+import { DepartementsComponent } from './departements/departements.component';
+import { RolesComponent } from './roles/roles.component';
 
 
 @NgModule({
   declarations: [
-    CommandeComponent,
     ScrapesComponent,
     DashboardComponent,
     MatComponent,
     AmalComponent,
-    UsersComponent
+    UsersComponent,
+    DepartementsComponent,
+    RolesComponent
 
   ],
   imports: [
