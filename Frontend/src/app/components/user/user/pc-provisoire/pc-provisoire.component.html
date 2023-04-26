@@ -1,0 +1,158 @@
+<main id="main" class="main">
+    <link rel="stylesheet">
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-center">
+          <h5 class="mb-0">Demande d'un ligne téléphonique & Internet </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="demandeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="nom" type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Nom"
+                    formControlName="nom" 
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && demandeControls['nom'].errors }" />
+                  <div *ngIf="isFormSubmitted && demandeControls['nom'].errors" class="invalid-feedback">
+                    <div *ngIf="demandeControls['nom'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname2">Prenom</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input name="type" type="text" class="form-control" id="basic-icon-default-fullname2"
+                      placeholder="Prénom" formControlName="prenom" 
+                      [ngClass]="{ 'is-invalid': isFormSubmitted && demandeControls['prenom'].errors }" />
+                    <div *ngIf="isFormSubmitted && demandeControls['prenom'].errors" class="invalid-feedback">
+                      <div *ngIf="demandeControls['prenom'].errors['required']"> Vous devez renseigner ce champ</div>
+                    </div>
+                  
+                  </div>
+  
+                </div>
+              </div>
+              
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Departement</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <select name="departement" id="departement" class="form-control" formControlName="departement_id"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && demandeControls['departement_id'].errors }">
+                    <option *ngFor = "let dept of listDepartements" [ngValue]="dept.id" class="form-control" selected>{{dept.dept}}</option>
+                  </select>
+                  <div *ngIf="isFormSubmitted && demandeControls['departement_id'].errors" class="invalid-feedback">
+                    <div *ngIf="demandeControls['departement_id'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Fonction</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <select name="role" id="role" class="form-control" formControlName="fonction"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && demandeControls['fonction'].errors }">
+                    <option *ngFor = "let role of listRoles" [ngValue]="role.id" class="form-control" selected>{{role.role}}</option>
+                  </select>
+                  <div *ngIf="isFormSubmitted && demandeControls['fonction'].errors" class="invalid-feedback">
+                    <div *ngIf="demandeControls['fonction'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+        
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Demande</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <select name="role" id="role" class="form-control" formControlName="appareil"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && demandeControls['appareil'].errors }">
+                    <option  Value="Pc de bureau" class="form-control" selected>Pc de bureau</option>
+                    <option  Value="Pc portable" class="form-control" selected>Pc Portable</option>
+                    
+
+                  </select>
+                  <div *ngIf="isFormSubmitted && demandeControls['appareil'].errors" class="invalid-feedback">
+                    <div *ngIf="demandeControls['appareil'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Du</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <input name="date"  min="{{currentDate | date:'yyyy-MM-dd'}}" type="date" class="form-control" id="basic-icon-default-fullname"
+                        placeholder=" DU" formControlName="du" [ngClass]="{
+                          'is-invalid':
+                            isFormSubmitted && demandeControls ['du'].errors
+                        }" />
+                      <div *ngIf="isFormSubmitted && demandeControls['du'].errors" class="invalid-feedback">
+                        <div *ngIf="demandeControls['du'].errors['required']">
+                          Vous devez renseigner ce champ
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Jusqu'a</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <input name="date"  min="{{currentDate | date:'yyyy-MM-dd'}}" type="date" class="form-control" id="basic-icon-default-fullname"
+                        placeholder=" DU" formControlName="jusqua" [ngClass]="{
+                          'is-invalid':
+                            isFormSubmitted && demandeControls ['jusqua'].errors
+                        }" />
+                      <div *ngIf="isFormSubmitted && demandeControls['jusqua'].errors" class="invalid-feedback">
+                        <div *ngIf="demandeControls['jusqua'].errors['required']">
+                          Vous devez renseigner ce champ
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Motif</label>
+                <div class="col-sm-10">
+                  <div>
+                    <label for="exampleFormControlTextarea1" class="form-label">Motif</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  formControlName="motif" 
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && demandeControls['motif'].errors }"></textarea>
+                    <div *ngIf="isFormSubmitted && demandeControls['motif'].errors" class="invalid-feedback">
+                      <div *ngIf="demandeControls['motif'].errors['required']"> Vous devez renseigner ce champ</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          
+            </div>
+            <div class="card-header d-flex align-items-center justify-content-center">
+              <div>
+                <button (click)="onReset()" class="btn btn-outline-warning mr-1">Annuler</button>
+                <button type="submit" class="btn btn-outline-primary">Envoyer</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>

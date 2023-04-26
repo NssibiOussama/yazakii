@@ -10,6 +10,9 @@ const mdpRouter =require('./Routes/mdp')
 const demandeRouter =require('./Routes/demande')
 const departementRouter =require('./Routes/departements')
 const roleRouter =require('./Routes/role')
+const demandeLigneInternetRouter =require('./Routes/demandeLigneInternet')
+const demandePcRouter =require('./Routes/demandePcController')
+const demandePcProvisoireRouter =require('./Routes/pcProvisoire')
 
 
 
@@ -47,6 +50,9 @@ app.use('/api/mdp',mdpRouter)
 app.use('/demande',demandeRouter)
 app.use('/departement',departementRouter)
 app.use('/role',roleRouter)
+app.use('/demandeLigneInternet',demandeLigneInternetRouter)
+app.use('/demandePc',demandePcRouter)
+app.use('/demandePcProvisoire',demandePcProvisoireRouter)
 
 
 
