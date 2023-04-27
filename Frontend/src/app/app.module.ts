@@ -20,6 +20,7 @@ import { UserComponent } from './layouts/AdminLayout/user/user.component';
 import { JwtService } from './services/jwt-service';
 import { ResetPasswordCodeComponent } from './pages/reset-password-code/reset-password-code.component';
 import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
+import { ManagerComponent } from './layouts/AdminLayout/manager/manager.component';
 
 
 
@@ -42,6 +43,7 @@ import { UpdatePasswordComponent } from './pages/update-password/update-password
     UserComponent,
     ResetPasswordCodeComponent,
     UpdatePasswordComponent,
+    ManagerComponent,
     
   
 

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ScrapesComponent } from 'src/app/components/admin/scrapes/scrapes.component';
 import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { MatComponent } from './mat/mat.component';
-import { AmalComponent } from 'src/app/components/admin/amal/amal.component';
 import { UsersComponent } from './users/users.component';
 import { DepartementsComponent } from './departements/departements.component';
 import { RolesComponent } from './roles/roles.component';
@@ -13,7 +12,6 @@ const routes: Routes = [
   { path:'',component:DashboardComponent,},
   {path:'mat' , component:MatComponent},
   { path: 'mat/edit/:id', component: MatComponent },
-  { path: 'amal', component:AmalComponent },  
   { path: 'scrapes', component:ScrapesComponent},
   {path:'users',component:UsersComponent},
   {path:'users/edit/:id',component:UsersComponent},

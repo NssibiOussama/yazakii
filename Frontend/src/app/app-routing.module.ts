@@ -31,6 +31,16 @@ const routes: Routes = [
     ],
     title:'User dashboard'
   },
+  {
+    path: 'manager', component: UserComponent, canActivate: [HasRoleGuard], 
+    data: { 
+      role: [ 'Manager','HR Manager','IT Manager','Plant Manager'], 
+    },
+    children: [
+      { path: '', loadChildren: () => import('./components/manager/manager.module').then(module => module.ManagerModule) }
+    ],
+    title:'Manager dashboard'
+  },
   { path: 'pages-401', component: PagesBlankComponent },
   { path: '', component: PagesLoginComponent },
 
