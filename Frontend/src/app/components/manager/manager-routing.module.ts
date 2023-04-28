@@ -6,6 +6,9 @@ import { DemandeLigneInternetComponent } from './demande-ligne-internet/demande-
 
 const routes: Routes = [
   {
+    path:'' , component:DemandePcComponent
+  },
+  {
     path:'demandepc' , component:DemandePcComponent
   },
   {

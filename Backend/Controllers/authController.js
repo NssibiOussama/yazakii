@@ -107,6 +107,7 @@ const login = async (req, res, next) => {
                 email: result[0].email,
                 image: result[0].image,
                 role: result[0].role,
+                departement : result[0].departement
               },
               process.env.SECRET_KEY,
               {

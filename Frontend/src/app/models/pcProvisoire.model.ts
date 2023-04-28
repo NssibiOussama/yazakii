@@ -10,4 +10,9 @@ export class pcProvisoire {
     jusqua !: Date
     dept !: string
     role !: string
+    sig_manager !: number
+    sig_hrmanager !: number
+    sig_itmanager !: number
+    sig_plantmanager !: number
+    approuved !: number
 }

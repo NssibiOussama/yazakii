@@ -8,6 +8,7 @@ import { AdminComponent } from './layouts/AdminLayout/admin/admin.component';
 import { UserComponent } from './layouts/AdminLayout/user/user.component';
 import { ResetPasswordCodeComponent } from './pages/reset-password-code/reset-password-code.component';
 import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
+import { ManagerComponent } from './layouts/AdminLayout/manager/manager.component';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   {
     path: 'user', component: UserComponent, canActivate: [HasRoleGuard], 
     data: { 
-      role: ['Administrateur', 'Manager'], 
+      role: ['Administrateur', 'Manager','HR Manager','IT Manager','Plant Manager'], 
       negateRoles: true 
     },
     children: [
@@ -32,9 +33,9 @@ const routes: Routes = [
     title:'User dashboard'
   },
   {
-    path: 'manager', component: UserComponent, canActivate: [HasRoleGuard], 
+    path: 'manager', component: ManagerComponent, canActivate: [HasRoleGuard], 
     data: { 
-      role: [ 'Manager','HR Manager','IT Manager','Plant Manager'], 
+      role: [ 'Manager','HR Manager','IT Manager','Plant Manager','Finance Manager'], 
     },
     children: [
       { path: '', loadChildren: () => import('./components/manager/manager.module').then(module => module.ManagerModule) }

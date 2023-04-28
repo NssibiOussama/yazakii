@@ -9,4 +9,9 @@ export class ligneInternet {
     appareil !: string
     dept !: string
     role !: string
+    sig_manager !: number
+    sig_hrmanager !: number
+    sig_financemanager !: number
+    sig_plantmanager !: number
+    approuved !: number
 }

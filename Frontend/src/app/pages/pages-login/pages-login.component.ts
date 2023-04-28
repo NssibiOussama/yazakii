@@ -51,14 +51,16 @@ title="Connexion"
     }
     this.authService.login(this.formLogin.value.email,this.formLogin.value.password).subscribe((data) => {
       console.log(this.authService.user);
-      if (this.authService.user.role == 'Administrateur' || this.authService.user.role == 'Manager') {
+      if (this.authService.user.role == 'Administrateur') {
         this.router.navigate(['/admin'])
+
+        
+      } else if (this.authService.user.role == 'Manager' || this.authService.user.role == 'IT Manager' || this.authService.user.role == 'HR Manager' || this.authService.user.role == 'Plant Manager' || this.authService.user.role == 'Finance Manager') {
+        this.router.navigate(['/manager'])
 
         
       } else {
         this.router.navigate(['/user'])
-
-        
       }
       
       

@@ -1,1 +1,82 @@
-<p>demande-pc works!</p>
+<main class="main" id="main">
+
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5>Liste des demandes</h5>
+      </div>
+  
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Motif</th>
+              <th>Appareil</th>
+              <th>Signature Manager</th>
+              <th>Signature HR Manager</th>
+              <th>Signature IT Manager</th>
+              <th>Signature Plant Manager</th>
+              <th>Approuved</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0" *ngFor="let pc of listDemandePc; let i = index">
+            <tr>
+              <td>{{pc.nom}}</td>
+              <td>{{pc.prenom}}</td>
+              <td>{{pc.motif}}</td>
+               <td>{{pc.appareil}}</td>
+               <td>
+                <ng-container *ngIf="pc.sig_manager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="pc.sig_hrmanager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="pc.sig_itmanager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="pc.sig_plantmanager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="pc.approuved == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              
+              <td>
+                <button (click)="signature(pc.id)" class="btn btn-outline-success">
+                  <i >Signature</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  

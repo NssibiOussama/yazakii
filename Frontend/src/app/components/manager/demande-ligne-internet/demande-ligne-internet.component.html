@@ -1,1 +1,82 @@
-<p>demande-ligne-internet works!</p>
+<main class="main" id="main">
+
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5>Liste des demandes</h5>
+      </div>
+  
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Forfait</th>
+              <th>Appareil</th>
+              <th>Signature Manager</th>
+              <th>Signature HR Manager</th>
+              <th>Signature Finance Manager</th>
+              <th>Signature Plant Manager</th>
+              <th>Approuved</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0" *ngFor="let linternet of listDemandeLigneInternet; let i = index">
+            <tr>
+              <td>{{linternet.nom}}</td>
+              <td>{{linternet.prenom}}</td>
+              <td>{{linternet.forfait}}</td>
+               <td>{{linternet.appareil}}</td>
+               <td>
+                <ng-container *ngIf="linternet.sig_manager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="linternet.sig_hrmanager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="linternet.sig_financemanager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="linternet.sig_plantmanager == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="linternet.approuved == 1; else inv">
+                  <span class="badge bg-label-success">Verifié</span>
+                </ng-container>
+                <ng-template #inv>
+                  <span class="badge bg-label-danger">Non Verifié</span>
+                </ng-template>
+              </td>
+              
+              <td>
+                <button (click)="signature(linternet.id)" class="btn btn-outline-success">
+                  <i >Signature</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  

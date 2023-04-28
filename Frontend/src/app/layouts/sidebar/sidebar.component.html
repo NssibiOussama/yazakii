@@ -23,7 +23,7 @@
                         <span>Roles</span> </a></li>
       </ul>
 
-      <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role !='Administrateur' && this.role != 'Manager'">
+      <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role !='Administrateur' && this.role != 'Manager' && this.role != 'IT Manager' && this.role != 'HR Manager' && this.role != 'Plant Manager' && this.role != 'Finance Manager'">
             <li class="nav-item"> <a class="nav-link collapsed" routerLink="/user/pcProvisoire"> <i class="bi bi-menu-button-wide"></i>
                         <span>PC Provisoire</span> </a></li>
             <li class="nav-item"> <a class="nav-link collapsed" routerLink="/user/pc"> <i class="bi bi-menu-button-wide"></i>
@@ -32,13 +32,13 @@
                         <span>ligne téléphonique &amp; Internet</span> </a></li>
       </ul>
 
-      <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role == 'HR Manager' || this.role == 'Manager' || this.role == 'IT Manager' || this.role == 'Plant Manager'">
-            <li class="nav-item"> <a class="nav-link collapsed" routerLink="/manager/demandepcprovisoire"> <i class="bi bi-menu-button-wide"></i>
-                        <span>PC Provisoire</span> </a></li>
-            <li class="nav-item"> <a class="nav-link collapsed" routerLink="/manager/demandepc"> <i class="bi bi-menu-button-wide"></i>
-                        <span>PC</span> </a></li>
-            <li class="nav-item"> <a class="nav-link collapsed" routerLink="/manager/demandeligneinternet"> <i class="bi bi-menu-button-wide"></i>
-                        <span>ligne téléphonique &amp; Internet</span> </a></li>
+      <ul class="sidebar-nav" id="sidebar-nav" >
+            <li *ngIf="this.role == 'HR Manager' || this.role == 'Manager' || this.role == 'IT Manager' || this.role == 'Plant Manager'" class="nav-item"> <a class="nav-link collapsed" routerLink="/manager/demandepcprovisoire"> <i class="bi bi-menu-button-wide"></i>
+                        <span>Demandes PC Provisoire</span> </a></li>
+            <li *ngIf="this.role == 'HR Manager' || this.role == 'Manager' || this.role == 'IT Manager' || this.role == 'Plant Manager'" class="nav-item"> <a class="nav-link collapsed" routerLink="/manager/demandepc"> <i class="bi bi-menu-button-wide"></i>
+                        <span>Demandes PC</span> </a></li>
+            <li *ngIf="this.role == 'HR Manager' || this.role == 'Manager' || this.role == 'Finance Manager' || this.role == 'Plant Manager'" class="nav-item"> <a class="nav-link collapsed" routerLink="/manager/demandeligneinternet"> <i class="bi bi-menu-button-wide"></i>
+                        <span>Demandes ligne téléphonique &amp; Internet</span> </a></li>
       </ul>
 
 </aside>
