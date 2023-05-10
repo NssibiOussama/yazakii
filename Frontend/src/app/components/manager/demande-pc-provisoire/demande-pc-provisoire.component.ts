@@ -20,10 +20,17 @@ export class DemandePcProvisoireComponent implements OnInit {
     this.getDemandesPcProvosoire()
   }
   getDemandesPcProvosoire() {
-    this.serviceDemande.getDemandesPcProvisoire().subscribe((data : any) =>{ this.listDemandePcProvosoire = data
+    this.serviceDemande.getDemandesPcProvisoire().subscribe((data : any) =>{ 
+      this.listDemandePcProvosoire = data
     ;
-    })
-
+    for (let i = 0; i < this.listDemandePcProvosoire.length; i++) {
+      const demande = this.listDemandePcProvosoire[i];
+      const qrCodeText = `${demande.nom} ${demande.prenom} ${demande.fonction}`;
+      this.serviceDemande.generateQrCode(qrCodeText).subscribe((qrCode: any) => {
+        demande.qrCode = qrCode;
+      });
+    }
+  });
   }
   signature(id:any){
     this.serviceDemande.updateDemandePcProvisoire(id).subscribe(

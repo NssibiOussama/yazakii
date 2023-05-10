@@ -23,7 +23,14 @@ export class DemandeLigneInternetComponent implements OnInit {
   getDemandesLigneInternet() {
     this.serviceDemande.getDemandesLigneInternet().subscribe((data) =>{ this.listDemandeLigneInternet = data
     ;
-    })
+    for (let i = 0; i < this.listDemandeLigneInternet.length; i++) {
+      const demande = this.listDemandeLigneInternet[i];
+      const qrCodeText = `${demande.nom} ${demande.prenom} ${demande.fonction}`;
+      this.serviceDemande.generateQrCode(qrCodeText).subscribe((qrCode: any) => {
+        demande.qrCode = qrCode;
+      });
+    }
+  });
 
   }
   signature(id:any){

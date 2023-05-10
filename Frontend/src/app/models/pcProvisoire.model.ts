@@ -15,4 +15,6 @@ export class pcProvisoire {
     sig_itmanager !: number
     sig_plantmanager !: number
     approuved !: number
+    qrCode !: any
+
 }

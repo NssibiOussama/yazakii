@@ -14,4 +14,6 @@ export class ligneInternet {
     sig_financemanager !: number
     sig_plantmanager !: number
     approuved !: number
+    qrCode !: any
+
 }
