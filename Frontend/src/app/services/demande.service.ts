@@ -43,4 +43,8 @@ export class DemandeService {
   updateDemandePcProvisoire(id: number): Observable<pcProvisoire> {
     return this.http.put<pcProvisoire>(this.demandUrl + '/pcprovisoire/'+this.authService.user.role+'/'+ id, this.httpOptions);
   }
+  generateQrCode(text : any):Observable<any>{
+    return this.http.get<any>('http://localhost:3000/generateQR?text=' +text,this.httpOptions)
+
+  }
 }

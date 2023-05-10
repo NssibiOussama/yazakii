@@ -18,6 +18,7 @@
               <th>Signature IT Manager</th>
               <th>Signature Plant Manager</th>
               <th>Approuved</th>
+              <th>Qr Code</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -67,6 +68,7 @@
                   <span class="badge bg-label-danger">Non Verifié</span>
                 </ng-template>
               </td>
+              <td><img class="rounded-circle" src="{{pc.qrCode}}" alt="Qr Code " width="150" height="150"></td>
               
               <td>
                 <button (click)="signature(pc.id)" class="btn btn-outline-success">

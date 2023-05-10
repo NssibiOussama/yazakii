@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const http = require('http');
+const QRCode = require('qrcode');
+const Jimp = require('jimp');
 const body_parser = require('body-parser')
 const authRouter = require('./Routes/auth')
 const materielRouter = require('./Routes/materiel')
@@ -54,7 +56,39 @@ app.use('/demandeLigneInternet',demandeLigneInternetRouter)
 app.use('/demandePc',demandePcRouter)
 app.use('/demandePcProvisoire',demandePcProvisoireRouter)
 
+app.get('/generateQR', async (req, res) => {
+  try {
+    const { text } = req.query;
+    const qrCodeImage = await QRCode.toDataURL(text);
+    // res.set('Content-Type', 'image/png');
+    res.status(200).json(qrCodeImage);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
+// Endpoint for scanning and checking a QR code
+app.post('/scanQR', async (req, res) => {
+  try {
+    const { imageUrl } = req.body;
+    const image = await Jimp.read(imageUrl);
+    const qrCode = await new Promise((resolve, reject) => {
+      Jimp.loadFont(Jimp.FONT_SANS_32_BLACK, (err, font) => {
+        if (err) {
+          reject(err);
+        } else {
+          const qrCode = new QRCodeDecoder().decodeFromImage(image.bitmap, {
+            inversionAttempts: 'dontInvert',
+          });
+          resolve(qrCode);
+        }
+      });
+    });
+    res.json({ qrCode });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 
 

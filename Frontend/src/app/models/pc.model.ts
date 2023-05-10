@@ -13,4 +13,5 @@ export class pc {
     sig_itmanager !: number
     sig_plantmanager !: number
     approuved !: number
+    qrCode !: any
 }
